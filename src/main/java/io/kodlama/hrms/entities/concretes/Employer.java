@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
@@ -15,12 +16,15 @@ import javax.persistence.*;
 public class Employer extends User {
 
     @Column(name = "company_name")
+    @NotBlank(message = "Şirket adı boş bırakılamaz")
     private String compayName;
 
     @Column(name = "website")
+    @NotBlank(message = "Web sitesi boş bırakılamaz")
     private String website;
 
     @Column(name = "phone_number")
+    @NotBlank(message = "Telefon boş bırakılamaz")
     private String phoneNumber;
 
     @JsonIgnore

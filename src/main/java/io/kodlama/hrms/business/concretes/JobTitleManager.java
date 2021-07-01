@@ -1,10 +1,7 @@
 package io.kodlama.hrms.business.concretes;
 
 import io.kodlama.hrms.business.abstracts.JobTitleService;
-import io.kodlama.hrms.core.utilities.results.DataResult;
-import io.kodlama.hrms.core.utilities.results.Result;
-import io.kodlama.hrms.core.utilities.results.SuccessDataResult;
-import io.kodlama.hrms.core.utilities.results.SuccessResult;
+import io.kodlama.hrms.core.utilities.results.*;
 import io.kodlama.hrms.dataAccess.abstracts.JobTitleDao;
 import io.kodlama.hrms.entities.concretes.JobTitle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,9 @@ public class JobTitleManager implements JobTitleService {
 
     @Override
     public Result add(JobTitle jobTitle) {
+        if(jobTitleDao.existsByNameIgnoreCase(jobTitle.getName())){
+            return new ErrorResult("Pozisyon daha önceden sisteme kaydedilmiş");
+        }
         jobTitleDao.save(jobTitle);
         return new SuccessResult("İş pozisyonu eklendi");
     }

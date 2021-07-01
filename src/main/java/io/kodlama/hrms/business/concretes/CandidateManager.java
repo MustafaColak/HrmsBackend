@@ -26,7 +26,7 @@ public class CandidateManager implements CandidateService {
         if( !userCheckService.CheckIfRealPerson(Long.parseLong(candidate.getIdentityNumber()),candidate.getFirstName(),
                 candidate.getLastName(),Integer.valueOf(candidate.getYearOfBirth()))){
             return new ErrorResult("Not a valid user");
-        }if(userDao.existsByEmail(candidate.getEmail())){
+        }if(userDao.existsByEmailIgnoreCase(candidate.getEmail())){
             return new ErrorResult("Bu mail adresi ile daha önceden sisteme kayıt olunmuş");
         }if(candidateDao.existsByIdentityNumber(candidate.getIdentityNumber())){
             return  new ErrorResult("Bu kimlik numarası ile daha önceden sisteme kayıt olunmuş");
