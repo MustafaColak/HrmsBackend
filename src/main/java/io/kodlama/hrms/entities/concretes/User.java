@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
@@ -20,8 +21,10 @@ public class User {
     private int id;
 
     @Column(name = "email")
+    @NotBlank(message = "Mail alanı boş bırakılamaz")
     private String email;
 
     @Column(name = "password")
+    @NotBlank(message = "Şifre alanı boş bırakılamaz")
     private String password;
 }

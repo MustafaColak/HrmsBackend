@@ -7,6 +7,7 @@ import io.kodlama.hrms.entities.concretes.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class CandidateController {
     private CandidateService candidateService;
 
     @PostMapping("/add")
-    public Result add(@RequestBody Candidate candidate){
+    public Result add(@Valid @RequestBody Candidate candidate){
         return candidateService.add(candidate);
     }
 
