@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,4 +32,6 @@ public class Employer extends User {
     @Column(name = "is_confirmed")
     private boolean isConfirmed = false;
 
+    @OneToMany(mappedBy = "employer")
+    private List<JobAdvertisement> jobAdvertisements;
 }
