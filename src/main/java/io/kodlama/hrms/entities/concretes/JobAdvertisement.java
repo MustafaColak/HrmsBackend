@@ -3,6 +3,7 @@ package io.kodlama.hrms.entities.concretes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -34,6 +35,13 @@ public class JobAdvertisement {
 
     @Column(name = "due_date")
     private Date dueDate;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
+
+    @Column(name = "creation_date")
+    @CreationTimestamp
+    private Date creationDate;// = new Date(System.currentTimeMillis());
 
     @ManyToOne
     @JoinColumn(name = "employer_id")
